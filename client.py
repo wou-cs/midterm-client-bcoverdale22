@@ -6,7 +6,9 @@ def get_programmer_count():
     Return the number of programmers return from the plural programmers API
     :return: An integer indicating the number of programmers in the plural list.
     """
-    return 0
+    p_dict = requests.get("http://chrisbrooks.pythonanywhere.com/api/programmers").json()
+    p_list = p_dict.get("programmers")
+    return len(p_list)
 
 
 def get_programmer_by_id(pid):
