@@ -17,7 +17,11 @@ def get_programmer_by_id(pid):
     :param pid: Unique identifier for the programmer to lookup
     :return: A dictionary containing the matched programmer. Return an empty dictionary if not found
     """
-    return {}
+    try:
+        p_dict = requests.get(f"http://chrisbrooks.pythonanywhere.com/api/programmers/{pid}").json()
+        return p_dict
+    except Exception:
+        return {}
 
 
 def get_full_name_from_first(first_name):
