@@ -30,4 +30,10 @@ def get_full_name_from_first(first_name):
     :param first_name:
     :return: A string containing the first and last name of the first programmer in the list of matches.
     """
-    return ""
+
+    p_dict = requests.get(f"http://chrisbrooks.pythonanywhere.com/api/programmers/by_first_name/{first_name}").json()
+    p_list = p_dict.get("programmers")
+    if len(p_list) == 0:
+        return None
+    first_p = p_list[0]
+    return f"{first_p.get('first')} {first_p.get('last')}"
